@@ -1,0 +1,6 @@
+node_modules/
+client/node_modules/
+client/dist/
+server/tmp/
+server/dev.db
+*.log

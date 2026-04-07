@@ -1,0 +1,115 @@
+openapi: 3.1.0
+info:
+  title: web-mini-template API
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /initialize:
+    post:
+      operationId: initialize
+      summary: Recreate schema and seed sample data
+      responses:
+        '204':
+          description: Initialized
+  /api/feed:
+    get:
+      operationId: getFeed
+      summary: Get feed rows joined across tasks/projects/members
+      responses:
+        '200':
+          description: Feed response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+  /api/members:
+    get:
+      operationId: getMembers
+      summary: Get members
+      responses:
+        '200':
+          description: Members response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembersResponse'
+  /api/tasks:
+    post:
+      operationId: createTask
+      summary: Create a task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        '201':
+          description: Created
+components:
+  schemas:
+    FeedItem:
+      type: object
+      required:
+        - project_id
+        - project_name
+        - owner_name
+        - task_id
+        - task_title
+        - task_status
+      properties:
+        project_id:
+          type: integer
+          format: int64
+        project_name:
+          type: string
+        owner_name:
+          type: string
+        task_id:
+          type: integer
+          format: int64
+        task_title:
+          type: string
+        task_status:
+          type: string
+    FeedResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeedItem'
+    Member:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    MembersResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+    CreateTaskRequest:
+      type: object
+      required:
+        - title
+        - member_id
+      properties:
+        title:
+          type: string
+        member_id:
+          type: integer
+          format: int64

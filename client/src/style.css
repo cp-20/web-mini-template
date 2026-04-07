@@ -1,0 +1,205 @@
+:root {
+  --bg-base: #f4f8f0;
+  --bg-card: #ffffff;
+  --bg-accent: #eaf6de;
+  --text: #223322;
+  --muted: #5d6d5d;
+  --line: #d5e0cf;
+  --primary: #2f8f4e;
+  --primary-strong: #1f6f39;
+  --danger: #c24132;
+  --radius: 14px;
+  --shadow: 0 18px 50px rgba(31, 43, 28, 0.08);
+
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  line-height: 1.45;
+  color: var(--text);
+  background: radial-gradient(circle at 10% 10%, #f9fff3 0%, var(--bg-base) 45%, #eef4ea 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+.shell {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.topbar {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.brand {
+  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav a {
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.nav a.router-link-active {
+  border-color: var(--primary);
+  color: var(--primary-strong);
+  background: var(--bg-accent);
+}
+
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.stack {
+  display: grid;
+  gap: 14px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.55rem;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.input,
+.select,
+.button {
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font: inherit;
+}
+
+.input,
+.select {
+  padding: 10px;
+  min-width: 180px;
+  background: #fff;
+}
+
+.button {
+  background: var(--primary);
+  color: #fff;
+  border: 1px solid var(--primary);
+  padding: 10px 14px;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  background: var(--primary-strong);
+}
+
+.button.secondary {
+  background: #fff;
+  color: var(--text);
+}
+
+.button.danger {
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: linear-gradient(130deg, #fff 0%, #f9fdf6 100%);
+}
+
+.card-title {
+  margin: 0 0 4px;
+  font-weight: 700;
+}
+
+.meta {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.75rem;
+  background: #fff;
+}
+
+.notice {
+  margin: 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed var(--line);
+  background: #fcfff9;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding: 14px 12px 30px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .row > * {
+    width: 100%;
+  }
+}

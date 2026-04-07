@@ -1,0 +1,56 @@
+[tools]
+node = "22"
+pnpm = "10"
+go = "1.25.0"
+
+[tasks.client]
+description = "Run frontend dev server (HMR)"
+run = "pnpm --dir client dev"
+
+[tasks.server]
+description = "Run backend dev server in Docker (watch reload)"
+run = "docker compose up --build server"
+
+[tasks.dev]
+description = "Run backend + DB in Docker (frontend stays local)"
+run = "docker compose up --build mysql server"
+
+[tasks.dev-full]
+description = "Run full stack and DB in Docker"
+run = "docker compose --profile fullstack up --build"
+
+[tasks.dev-down]
+description = "Stop Docker compose services"
+run = "docker compose down"
+
+[tasks.migrate-up]
+description = "Apply MySQL migrations"
+run = "go run github.com/golang-migrate/migrate/v4/cmd/migrate@latest -path server/migrations -database 'mysql://app:app@tcp(localhost:3306)/app' up"
+
+[tasks.migrate-down]
+description = "Rollback MySQL migrations"
+run = "go run github.com/golang-migrate/migrate/v4/cmd/migrate@latest -path server/migrations -database 'mysql://app:app@tcp(localhost:3306)/app' down 1"
+
+[tasks.codegen]
+description = "Generate client and server code from OpenAPI"
+run = "pnpm --dir client run codegen && cd server && go generate ./..."
+
+[tasks.client-fmt]
+description = "Run oxfmt in client"
+run = "pnpm --dir client run fmt"
+
+[tasks.client-fmt-check]
+description = "Check oxfmt in client"
+run = "pnpm --dir client run fmt:check"
+
+[tasks.client-lint]
+description = "Run oxlint in client"
+run = "pnpm --dir client run lint"
+
+[tasks.server-build]
+description = "Build server"
+run = "cd server && go build ./..."
+
+[tasks.server-test]
+description = "Run server tests"
+run = "cd server && go test ./... -v"
