@@ -13,7 +13,7 @@ run = "docker compose up --build server"
 
 [tasks.dev]
 description = "Run backend (Docker) and frontend (local) together"
-run = "mise run server & mise run client & wait"
+run = [{ tasks = ["server", "client"] }]
 
 [tasks.dev-full]
 description = "Run full stack and DB in Docker"
