@@ -12,8 +12,8 @@ description = "Run backend dev server in Docker (watch reload)"
 run = "docker compose up --build server"
 
 [tasks.dev]
-description = "Run backend + DB in Docker (frontend stays local)"
-run = "docker compose up --build mysql server"
+description = "Run backend (Docker) and frontend (local) together"
+run = "mise run server & mise run client & wait"
 
 [tasks.dev-full]
 description = "Run full stack and DB in Docker"
